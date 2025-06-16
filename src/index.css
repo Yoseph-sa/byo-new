@@ -1568,4 +1568,10 @@ a:hover {
     padding-top: 50px;
     padding-bottom: 50px;
 }
+.client-ul{
+  justify-content: space-between;
+}
+.client-ul li {
+  width: calc(34% - 16px);
+}
 }
