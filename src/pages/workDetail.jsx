@@ -74,7 +74,7 @@ const WorkDetail = () => {
       images: data?.planOfAction?.image ? [data?.planOfAction?.image] : null,
     },
   ];
-  console.log("abc", content);
+  console.log("abc", data);
 
   return (
     <>
@@ -90,6 +90,17 @@ const WorkDetail = () => {
                   elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus
                   leo.
                 </p>
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
+      {!data?.description && !data?.mainImage && !data?.multiImages && (
+        <section className="inner-sec pb-0">
+          <div className="container inn-container">
+            <div className="row">
+              <div className="col-lg-12" style={{height: "300px"}}>
+                <h1 className="inn-title">{data?.title}</h1>
               </div>
             </div>
           </div>
