@@ -12,18 +12,21 @@ import { singleProjectQuery } from "../server/querys";
 import sanityClient from "../server/sanityClient";
 import { useParams } from "react-router-dom";
 import GalleryImages from "../components/detail/GalleryImages";
+import Loading from "../components/detail/Loading";
 const WorkDetail = () => {
   const [data, setData] = useState(null);
   const { title } = useParams();
+  const [loading, setLoading] = useState(true);
 
   // Fetch data on component mount and whenever the query changes
   innAnimation();
   useEffect(() => {
     const fetchGalleryImages = async () => {
+      setLoading(true);
       const data = await sanityClient.fetch(singleProjectQuery, { title });
-      console.log(51515, data);
 
       setData(data);
+      setLoading(false);
     };
 
     fetchGalleryImages();
@@ -75,6 +78,7 @@ const WorkDetail = () => {
 
   return (
     <>
+      {loading && <Loading />}
       {data?.description && (
         <section className="inner-sec pb-0">
           <div className="container inn-container">
