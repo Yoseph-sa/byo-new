@@ -13,10 +13,10 @@ const Navbar = () => {
     const handleScroll = () => {
       const scrollY = window.scrollY;
 
-      // Normal scroll for background or effects
+      // Sticky class toggle
       setIsScrolled(scrollY > 100);
 
-      // Special white link logic on about page
+      // About page top logic
       if (location.pathname === "/about") {
         setIsAboutTop(scrollY < 200);
       } else {
@@ -24,7 +24,7 @@ const Navbar = () => {
       }
     };
 
-    handleScroll(); // Trigger on first load
+    handleScroll(); // Call on initial load
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, [location]);
@@ -90,6 +90,7 @@ const Navbar = () => {
                     : label === "About"
                     ? "/about"
                     : "/contact";
+
                 return (
                   <li className="nav-item" key={index}>
                     <Link
@@ -98,6 +99,7 @@ const Navbar = () => {
                       ref={(el) => (navRefs.current[index] = el)}
                       onMouseEnter={(e) => handleMouseEnter(index, e)}
                       onMouseLeave={() => handleMouseLeave(index)}
+                      onClick={() => setIsNavOpen(false)} // 👈 close navbar on click
                     >
                       {label}
                     </Link>
